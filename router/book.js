@@ -81,4 +81,45 @@ router.post('/',upload.single('image'),async (req,res)=>{
     }
 })
 
+
+router.get('/:id', async (req,res)=>{
+    const book = await Book.findById({_id:req.params.id})
+    const author = await Author.findById({_id:book.author})
+    res.render('book/view', {book, author})
+})
+
+router.delete('/:id', async (req,res)=>{
+    await Book.findByIdAndDelete({_id:req.params.id})
+    res.redirect('/book')
+
+})
+
+router.get('/edit/:id',  async (req,res)=>{
+    const book = await Book.findById({_id:req.params.id})
+    const authors = await Author.find({})
+    res.render('book/edit', {book, authors})
+})
+
+router.patch('/:id',upload.single('image'), async (req,res)=>{
+    try{
+        let filename
+        const book = await Book.findById({_id:req.params.id})
+        if(req.body.image != null || req.body.image != ''){
+            filename = req.file == null ? '' : req.file.path
+        }
+        await Book.findByIdAndUpdate({_id:req.params.id}, {
+                title: req.body.title || book.title,
+                description: req.body.description || book.description,
+                publishDate: new Date(req.body.publishDate) || book.publishDate,
+                pageCount: req.body.pageCount || book.pageCount,
+                author: req.body.author || book.author,
+                image:filename || book.image 
+
+            })
+        res.redirect('/book')
+    }catch(err){
+        res.render('book/edit', {errorMessage: 'An error occurred while editing...'})
+    }
+})
+
 module.exports = router

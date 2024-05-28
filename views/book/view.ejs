@@ -1,0 +1,18 @@
+<%- include('../partials/header'); -%>
+<div style="text-align:center">
+    <h3>Title: <%= book.title %></h3>
+    <h3>Author's name: <%= author.name %></h3>
+    <p><span style="font-weight: bolder;">Description: </span> <%=book.description %></p>
+    <p><span style="font-weight: bolder;">Date: </span><%=new Date(book.publishDate).toLocaleString() %></p>
+    <p><span style="font-weight: bolder;">Page Count:</span> <%= book.pageCount %></p>
+    <img src="<%= book.image.split('\\')[2] %>" alt="">
+    <div style="display:flex; ">
+        <form action="/book/<%= book.id %>?_method=DELETE" method="POST" style="margin-left:40%;">
+            <input type="submit" value="Delete" style="background-color:red">
+        </form>
+        <a href="/book/edit/<%= book.id %>" style="margin-left:10%;background-color:green; width:70px; height:40px;
+        color:white; margin-top:10px">Edit</a>
+    </div>
+</div>
+
+<%- include('../partials/footer'); -%>

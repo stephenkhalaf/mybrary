@@ -22,13 +22,14 @@ app.set('views', 'views')
 app.use(express.static('public'))
 app.use(express.static('public/uploads'))
 app.use('/author',express.static('public'))
+app.use('/author',express.static('public/uploads'))
 app.use('/author/new',express.static('public'))
 app.use('/author/edit',express.static('public'))
-
 app.use('/book',express.static('public'))
+app.use('/book/edit',express.static('public'))
 app.use('/book',express.static('public/uploads'))
 app.use('/', indexRouter)
-app.use('/author', authorRouter)``
+app.use('/author', authorRouter)
 app.use('/book', bookRouter)
 
 app.listen(port,()=>console.log('Listening at port',port))

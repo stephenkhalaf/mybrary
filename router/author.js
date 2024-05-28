@@ -46,7 +46,7 @@ router.post('/',async (req,res)=>{
 router.get('/:id',  async (req,res)=>{
     const books = await Book.find({author:req.params.id})
     const author = await Author.findById({_id:req.params.id})
-    res.status(200).render('author/show', {author, books})
+    res.status(200).render('author/view', {author, books})
 })
 
 router.get('/edit/:id',  async (req,res)=>{

@@ -19,8 +19,15 @@
             <div class="book-display">
                 <% books.forEach(function(book){ %>
                         <div style="text-align:center">
-                            <h3><%= book.title %></h3>
+                            <h3><a href="/book/<%= book.id %>" ><%= book.title %></a></h3>
                             <img src="<%= book.image.split('\\')[2] %>" alt="">
+                            <div style="display:flex;">
+                                <form action="/book/<%= book.id %>?_method=DELETE" method="POST" style="margin-left:15%;">
+                                    <input type="submit" value="Delete" style="background-color:red">
+                                </form>
+                                <a href="/book/edit/<%= book.id %>" style="margin-left:10%;background-color:green; width:70px; height:40px;
+                                color:white; margin-top:10px">Edit</a>
+                            </div>
                         </div>
                   <% }); %>
             </div>

@@ -93,6 +93,7 @@ hr{
 .book-display{
     display:flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 img{
     width:200px;

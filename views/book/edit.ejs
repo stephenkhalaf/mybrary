@@ -1,0 +1,41 @@
+<%- include('../partials/header'); -%>
+<%- include('../errorMessage'); -%>
+
+<div class="container-fluid">
+    <h2>Edit Book</h2>
+
+    <form action="/book/<%=book.id %>?_method=PATCH" method="POST" enctype="multipart/form-data" >
+        <input type="text" name="title" value="<%=book.title %>" autocomplete="off" placeholder="Title" class="form-control">
+        <br>
+        <select name="author" class="form-control">
+            <option>------- Select Your Author -----------</option>
+            <% authors.forEach(function(author){ %>
+                <% if(book.author == author.id){%>
+                    <option selected value="<%= author.id %>"><%= author.name %></option>
+                <%}else{ %>
+                    <option  value="<%= author._id %>"><%= author.name %></option>
+                    <%}%>
+              <% }); %>
+        </select>
+        <br>
+        <label for="publishDate">Publish Date</label>
+        <input type="date" name="publishDate" value="<%= book.publishDate == null ?'':book.publishDate.toISOString().split('T')[0] %>" id="publishDate" class="form-control" style="margin-top:0">
+
+        <br>
+        <label for="pageCount">Page Count</label>
+        <input type="number" name="pageCount" value="<%= book.pageCount %>"  id="pageCount" min="1" class="form-control" style="margin-top:0">
+
+        <br>
+        <label for="image">Book Image Cover</label>
+        <input type="file" name="image" id="image" style="margin-top:0">
+
+        <label for="description">Description</label><br>
+        <textarea name="description" id="description"   class="form-control"><%= book.description %></textarea>
+
+        <div class="submit-div" style="margin-top:20px">
+            <a href="/book"><input type="button" value="Cancel"></a>
+            <input type="submit" value="Save" >
+        </div>
+    </form>
+</div>
+<%- include('../partials/footer'); -%>
