@@ -1,0 +1,19 @@
+<%- include('../partials/header'); -%>
+<div class="author">
+    <h2><%= author.name %></h2>
+
+    <div style="margin-top:15px">
+        <a href="/author/edit/<%= author.id %>">Edit</a>
+        <form action="/author/<%= author.id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" style="background-color:red">
+        </form>
+    </div>
+</div>
+
+<hr>
+<h3>Books By <%= author.name %></h3>
+
+
+
+
+<%- include('../partials/footer'); -%>

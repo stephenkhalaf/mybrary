@@ -1,0 +1,16 @@
+<%- include('partials/header'); -%>
+<h2>Recently Added</h2>
+
+<% if (books.length) { %>
+    <div class="book-display">
+        <% books.forEach(function(book){ %>
+                <div style="text-align:center">
+                    <h3><%= book.title %></h3>
+                    <img src="<%= book.image.split('\\')[2] %>" alt="">
+                </div>
+          <% }); %>
+    </div>
+  <% }else{ %>
+        <h3>No books found</h3>
+    <% } %>
+<%- include('partials/footer'); -%>

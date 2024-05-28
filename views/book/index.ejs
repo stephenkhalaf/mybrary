@@ -1,0 +1,34 @@
+<%- include('../partials/header'); -%>
+<div class="container-fluid">
+    <h2>Search Books</h2>
+
+    <form action="/book" method="GET">
+        <input type="text" placeholder="title" name="title" value="<%= searchOptions.title %>" autocomplete="off" class="form-control"> 
+        
+        <label for="publishedAfter">published After</label>
+        <input type="date"  name="publishedAfter"  value="<%= searchOptions.publishedAfter %>" autocomplete="off" class="form-control" style="margin-top:0">
+
+        <label for="publishedBefore">published Before</label>
+        <input type="date"  name="publishedBefore"  value="<%= searchOptions.publishedBefore %>" autocomplete="off" class="form-control" style="margin-top:0">
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    <hr>
+        <h3>Books List</h3>
+        <% if (books.length) { %>
+            <div class="book-display">
+                <% books.forEach(function(book){ %>
+                        <div style="text-align:center">
+                            <h3><%= book.title %></h3>
+                            <img src="<%= book.image.split('\\')[2] %>" alt="">
+                        </div>
+                  <% }); %>
+            </div>
+          <% }else{ %>
+                <h3>No books found</h3>
+            <% } %>
+    
+
+
+</div>
+<%- include('../partials/footer'); -%>

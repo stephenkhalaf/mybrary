@@ -1,0 +1,15 @@
+<%- include('../partials/header'); -%>
+<%- include('../errorMessage'); -%>
+
+<div class="container-fluid">
+    <h2>Edit Author</h2>
+
+    <form action="/author/<%=author.id %>?_method=PATCH" method="POST" >
+        <input type="text" name="name" autocomplete="off" placeholder="Name" value="<%= author.name %>">
+        <div class="submit-div">
+            <a href="/author"><input type="button" value="Cancel"></a>
+            <input type="submit" value="Edit" >
+        </div>
+    </form>
+</div>
+<%- include('../partials/footer'); -%>

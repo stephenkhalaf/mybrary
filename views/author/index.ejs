@@ -1,0 +1,34 @@
+<%- include('../partials/header'); -%>
+<%- include('../errorMessage'); -%>
+<div class="container-fluid">
+    <h2>Search Authors</h2>
+
+    <form action="/author" method="GET">
+        <input type="text" placeholder="name" name="name" value="<%= searchOptions.name  %>" autocomplete="off"> 
+        <input type="submit" value="Search">
+    </form>
+
+    <hr>
+        <h3>Author's List</h3>
+    <% if (authors.length) { %>
+        <ul>
+            <% authors.forEach(function(author){ %>
+                <div class="author">
+                    <li> <%= author.name %></li>
+                    <div>
+                        <a href="/author/<%= author.id %>">View</a>
+                        <a href="/author/edit/<%= author.id %>">Edit</a>
+                        <form action="/author/<%= author.id %>?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete" style="background-color:red">
+                        </form>
+                    </div>
+                </div>
+              <% }); %>
+        </ul>
+      <% }else{ %>
+            <h3>No authors found</h3>
+        <% } %>
+
+
+</div>
+<%- include('../partials/footer'); -%>
